@@ -29,12 +29,17 @@ fun AppBarView(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { onBackNavClicked() }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    tint = colorResource(id = R.color.white),
-                    contentDescription = null
-                )
+            if(!title.contains("Wish List")){
+                IconButton(onClick = { onBackNavClicked() }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        tint = colorResource(id = R.color.white),
+                        contentDescription = null
+                    )
+                }
+            }
+            else{
+                null
             }
         },
         backgroundColor = colorResource(id = R.color.black),
