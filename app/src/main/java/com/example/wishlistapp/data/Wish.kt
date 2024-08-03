@@ -5,3 +5,10 @@ data class Wish(
     val title : String = "",
     val description: String = ""
 )
+
+object DummyWish{
+    val wishList = listOf(
+        Wish(title = "Welcome to Wish List",
+            description = "Wish List is great")
+    )
+}

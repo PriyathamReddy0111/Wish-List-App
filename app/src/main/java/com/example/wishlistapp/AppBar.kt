@@ -24,7 +24,7 @@ fun AppBarView(
                 text = title,
                 color = colorResource(id = R.color.white),
                 modifier = Modifier
-                    .padding(start = 4.dp)
+                    .padding(start = if (title.contains("Wish List")) 0.dp else 4.dp) // Adjust padding
                     .heightIn(max = 24.dp)
             )
         },
@@ -37,9 +37,6 @@ fun AppBarView(
                         contentDescription = null
                     )
                 }
-            }
-            else{
-                null
             }
         },
         backgroundColor = colorResource(id = R.color.black),
