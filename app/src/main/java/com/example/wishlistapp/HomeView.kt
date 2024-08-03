@@ -3,10 +3,14 @@ package com.example.wishlistapp
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -23,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.wishlistapp.data.DummyWish
 import com.example.wishlistapp.data.Wish
 
@@ -35,12 +40,14 @@ fun HomeView(){
         })},
         floatingActionButton = {
             FloatingActionButton(
-                modifier = Modifier.padding(all =20.dp),
+                modifier = Modifier
+                    .padding(all =20.dp)
+                    .size(50.dp),
                 onClick = { Toast.makeText(context, "FAButton Clicked",Toast.LENGTH_LONG).show() },
                 contentColor = Color.White,
                 backgroundColor = colorResource(id = R.color.Light_Blue)
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                Icon(imageVector = Icons.Default.Add, contentDescription = null, modifier = Modifier.size(27.dp))
             }
         },
         backgroundColor = Color.Black // Set the background color to black
@@ -63,7 +70,8 @@ fun WishItem(wish: Wish, onClick: ()-> Unit){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 8.dp, top = 8.dp, end = 8.dp)
+            .height(85.dp)
+            .padding(start = 15.dp, top = 8.dp, end = 15.dp)
             .clickable {
                 onClick()
             },
@@ -72,10 +80,12 @@ fun WishItem(wish: Wish, onClick: ()-> Unit){
         contentColor = Color.White
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(text = wish.title, fontWeight = FontWeight.ExtraBold)
-            Text(text = wish.description)
+            Text(text = wish.title, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(text = wish.description,)
         }
     }
 }
