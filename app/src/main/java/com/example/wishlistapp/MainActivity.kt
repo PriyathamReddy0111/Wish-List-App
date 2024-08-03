@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black// Set the background color to black
                 ) {
-                    HomeView()
+                    Navigation()
                 }
             }
         }
