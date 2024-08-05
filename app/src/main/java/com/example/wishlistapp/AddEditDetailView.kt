@@ -3,13 +3,24 @@ package com.example.wishlistapp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextFieldDefaults
+
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -37,3 +48,41 @@ fun AddEditDetailView(
         }
     }
 }
+
+
+@Composable
+fun WishTextField(
+    label: String,
+    value: String,
+    onValueChanged: (String)-> Unit
+){
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChanged,
+        label = { Text(text = label, color = Color.White) },
+        modifier = Modifier.fillMaxWidth(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = Color.White,
+            focusedBorderColor = Color.White,
+            unfocusedBorderColor = Color.White,
+            cursorColor = Color.White,
+            focusedLabelColor = Color.White,
+            unfocusedLabelColor = Color.White
+        )
+    )
+}
+
+@Preview
+@Composable
+fun WishTestFieldPreview(){
+    WishTextField(label = "text", value = "text", onValueChanged = {})
+}
+
+
+
+
+
+
+
+
