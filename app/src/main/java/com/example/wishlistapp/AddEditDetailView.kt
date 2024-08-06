@@ -36,7 +36,10 @@ fun AddEditDetailView(
     Scaffold (
         topBar = {
             AppBarView(title = if (id != 0L) "Update Wish"
-                    else "Add Wish"
+                    else "Add Wish",
+                onBackNavClicked = {
+                    navController.navigateUp()
+                }
             )
         }
     ){
