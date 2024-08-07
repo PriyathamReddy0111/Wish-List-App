@@ -26,4 +26,7 @@ abstract class WishDao {
 
     @Query("select * from `wish-table` where id=:id")
     abstract fun getAWishById(id: Long): Flow<Wish>
+
+    @Query("SELECT COUNT(*) FROM `wish-table`")
+    abstract suspend fun getWishCount(): Int
 }

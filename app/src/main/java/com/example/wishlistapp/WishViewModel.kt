@@ -18,6 +18,25 @@ class WishViewModel(
     var wishTitleState by mutableStateOf("")
     var wishDescriptionState by mutableStateOf("")
 
+    private val defaultWish = Wish(
+        id = 0L,
+        title = "Welcome to Wish List",
+        description = "Swipe left or right to delete this wish. Tap to edit."
+    )
+
+    init {
+        viewModelScope.launch {
+            getAllWishes = wishRepository.getWishes()
+            addDefaultWishIfEmpty()
+        }
+    }
+
+    private suspend fun addDefaultWishIfEmpty() {
+        if (wishRepository.getWishesCount() == 0) {
+            addWish(defaultWish)
+        }
+    }
+
     fun onWishTitleChanged(newString: String){
         wishTitleState = newString
     }

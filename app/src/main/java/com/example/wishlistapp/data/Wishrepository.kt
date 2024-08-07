@@ -22,4 +22,8 @@ class WishRepository( private val wishDao: WishDao) {
         wishDao.deleteAWish(wish)
     }
 
+    suspend fun getWishesCount(): Int {
+        return wishDao.getWishCount()
+    }
+
 }
