@@ -30,8 +30,10 @@ fun Navigation(viewModel: WishViewModel = viewModel(), navController: NavHostCon
 
             )
         ){entry->
-            val id = if (entry.arguments != null) entry.arguments!!.getLong("id") else 0L
-            AddEditDetailView(id = 0L, navController = navController, viewModel = viewModel)
+//            val id = if (entry.arguments != null) entry.arguments!!.getLong("id") else 0L
+//            AddEditDetailView(id = 0L, navController = navController, viewModel = viewModel)
+            val id = entry.arguments?.getLong("id") ?: 0L
+            AddEditDetailView(id = id, navController = navController, viewModel = viewModel)
         }
     }
 }
