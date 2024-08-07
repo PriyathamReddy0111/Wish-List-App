@@ -1,6 +1,7 @@
 package com.example.wishlistapp
 
 import android.widget.Button
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -39,9 +40,9 @@ fun AddEditDetailView(
     navController: NavController,
     viewModel: WishViewModel
 ) {
-    val snackMessage = remember {
-        mutableStateOf("")
-    }
+//    val snackMessage = remember {
+//        mutableStateOf("")
+//    }
 
     val scope = rememberCoroutineScope()
 
@@ -57,12 +58,14 @@ fun AddEditDetailView(
                 }
             )
         },
-        scaffoldState= scaffoldState
+        scaffoldState= scaffoldState,
+        backgroundColor = Color.Black
     ){
         Column (
             modifier = Modifier
                 .padding(it)
-                .wrapContentSize(),
+                .wrapContentSize()
+                .background(color = Color.Black),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
@@ -97,17 +100,18 @@ fun AddEditDetailView(
                                 description = viewModel.wishDescriptionState.trim()
                             )
                         )
-                        snackMessage.value = "Wish has been created"
+//                        snackMessage.value = "Wish has been created"
                     }
                 }
                 else{
-                    snackMessage.value="Enter empty fields to create a wish"
+//                    snackMessage.value="Enter empty fields to create a wish"
                 }
                 scope.launch {
-                    scaffoldState.snackbarHostState.showSnackbar(snackMessage.value)
+//                    scaffoldState.snackbarHostState.showSnackbar(snackMessage.value)
                     navController.navigateUp()
                 }
-            }) {
+            },
+                modifier = Modifier.padding(top = 8.dp)) {
                 Text(
                     text = if(id!=0L) "Update Wish"
                     else "Add Wish",
@@ -126,10 +130,10 @@ fun WishTextField(
     onValueChanged: (String)-> Unit
 ){
     OutlinedTextField(
+        modifier = Modifier.padding(start= 8.dp, end = 8.dp).fillMaxWidth(),
         value = value,
         onValueChange = onValueChanged,
         label = { Text(text = label, color = Color.White) },
-        modifier = Modifier.fillMaxWidth(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             textColor = Color.White,
