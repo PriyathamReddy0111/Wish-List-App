@@ -50,7 +50,7 @@ fun HomeView(
                     .size(50.dp),
                 onClick = {
                     Toast.makeText(context, "FAButton Clicked",Toast.LENGTH_LONG).show()
-                    navController.navigate(Screen.AddScreen.route)
+                    navController.navigate(Screen.AddScreen.route+ "0L")
                           },
                 contentColor = Color.White,
                 backgroundColor = colorResource(id = R.color.Light_Blue)
@@ -67,7 +67,8 @@ fun HomeView(
             .padding(it)){
             items(wishlist.value){
                     wish -> WishItem(wish = wish) {
-
+                val id = wish.id
+                navController.navigate(route = Screen.AddScreen.route + "/$id")
             }
             }
         }
