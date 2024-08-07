@@ -16,10 +16,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WishListAppTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Black// Set the background color to black
+                    color = Color.Black
                 ) {
                     Navigation()
                 }

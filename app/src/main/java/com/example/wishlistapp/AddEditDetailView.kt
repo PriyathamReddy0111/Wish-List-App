@@ -42,22 +42,14 @@ fun AddEditDetailView(
     navController: NavController,
     viewModel: WishViewModel
 ) {
-//    val snackMessage = remember {
-//        mutableStateOf("")
-//    }
+    val snackMessage = remember {
+        mutableStateOf("")
+    }
 
     val scope = rememberCoroutineScope()
 
     val scaffoldState = rememberScaffoldState()
 
-//    if (id != 0L){
-//        val wish = viewModel.getAWishById(id).collectAsState(initial = Wish(0L, "",""))
-//        viewModel.wishTitleState = wish.value.title
-//        viewModel.wishDescriptionState = wish.value.description
-//    }else{
-//        viewModel.wishTitleState = ""
-//        viewModel.wishDescriptionState = ""
-//    }
 
     LaunchedEffect(id) {
         if (id != 0L) {
@@ -123,23 +115,27 @@ fun AddEditDetailView(
                         )
                     }
                     else{
-                        //Add Wish
+
                         viewModel.addWish(
                             Wish(
                                 title = viewModel.wishTitleState.trim(),
                                 description = viewModel.wishDescriptionState.trim()
                             )
                         )
-//                        snackMessage.value = "Wish has been created"
+
                     }
                 }
 
-//                else{
-////                    snackMessage.value="Enter empty fields to create a wish"
-//                }
+
                 scope.launch {
-//                    scaffoldState.snackbarHostState.showSnackbar(snackMessage.value)
-                    navController.navigateUp()
+//
+                    if (viewModel.wishTitleState.isNotEmpty() &&
+                        viewModel.wishDescriptionState.isNotEmpty()) {
+                        navController.navigateUp()
+                    }
+                    else{
+                        scaffoldState.snackbarHostState.showSnackbar("Enter empty fields")
+                    }
                 }
             },
                 modifier = Modifier.padding(top = 8.dp)) {
